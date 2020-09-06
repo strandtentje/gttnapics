@@ -5,7 +5,7 @@ namespace GettinAPILibrary
 {
     public class GettinEvent
     {
-        [JsonProperty("description")];
+        [JsonProperty("description")]
         public string Description { get; set; } 
 
         [JsonProperty("end_time")]
@@ -33,6 +33,6 @@ namespace GettinAPILibrary
         public string Website { get; set; }
 
         [JsonProperty("id"), JsonIgnore]
-        public string ID { get; set; }
+        public string ID { get; set; }  
     }
 }

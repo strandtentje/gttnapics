@@ -4,7 +4,7 @@ using System;
 namespace GettinAPILibraryTests
 {
     [TestFixture()]
-    public class OrganiserFactoryTest
+    public class OrganisersTest
     {
         private Organisers SUT = new Organisers(APIConnector.ForCredentialFile("credentials.txt"));
 
