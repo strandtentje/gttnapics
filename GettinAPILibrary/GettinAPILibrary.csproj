@@ -43,6 +43,7 @@
     <Compile Include="GettinEvents.cs" />
     <Compile Include="GettinEvent.cs" />
     <Compile Include="IApiSource.cs" />
+    <Compile Include="Orders.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace GettinAPILibraryTests
 {
     [TestFixture()]
-    public class EventFactoryTest
+    public class EventsTest
     {
         private static readonly APIConnector connector = APIConnector.ForCredentialFile("credentials.txt");
         private Organisers oFactory = new Organisers(connector);
@@ -14,7 +14,7 @@ namespace GettinAPILibraryTests
         [Test()]
         public void CheckPost()
         {
-            var organiser = oFactory.StoreNew(OrganiserFactoryTest.MakeOrganiser());
+            var organiser = oFactory.StoreNew(OrganisersTest.MakeOrganiser());
             GettinEvent eventToStore = MakeEvent(organiser);
             var storedEvent = SUT.StoreNew(eventToStore);
             Assert.Greater(storedEvent.ID.Length, 0);
@@ -27,7 +27,7 @@ namespace GettinAPILibraryTests
         [Test()]
         public void CheckUpdate()
         {
-            var organiser = oFactory.StoreNew(OrganiserFactoryTest.MakeOrganiser());
+            var organiser = oFactory.StoreNew(OrganisersTest.MakeOrganiser());
             GettinEvent eventToStore = MakeEvent(organiser);
             var storedEvent = SUT.StoreNew(eventToStore);
             storedEvent.Description = "Take me back to wonderland";
@@ -37,7 +37,7 @@ namespace GettinAPILibraryTests
 
         public void CheckGet()
         {
-            var organiser = oFactory.StoreNew(OrganiserFactoryTest.MakeOrganiser());
+            var organiser = oFactory.StoreNew(OrganisersTest.MakeOrganiser());
             GettinEvent eventToStore = MakeEvent(organiser);
             var storedEvent = SUT.StoreNew(eventToStore);
 
@@ -47,7 +47,7 @@ namespace GettinAPILibraryTests
             // same test for brevity here.
         }
 
-        private static GettinEvent MakeEvent(Organiser organiser)
+        public static GettinEvent MakeEvent(Organiser organiser)
         {
             return new GettinEvent()
             {

@@ -35,8 +35,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrganiserFactoryTest.cs" />
-    <Compile Include="EventFactoryTest.cs" />
+    <Compile Include="OrganisersTest.cs" />
+    <Compile Include="EventsTest.cs" />
+    <Compile Include="OrdersTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

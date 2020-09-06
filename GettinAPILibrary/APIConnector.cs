@@ -26,14 +26,19 @@ namespace GettinAPILibrary
             return newConnector;
         }
 
-        internal T Call<T>(HttpMethod method, string url, T payload) 
+        internal T Call<T>(HttpMethod method, string url, T payload)
+        {
+            return Call<T, T>(method, url, payload);
+        }
+
+        internal T2 Call<T1, T2>(HttpMethod method, string url, T1 payload)
         {
             var hwr = WebRequest.CreateHttp(BaseURL + url);
             hwr.Method = method.ToString();
             hwr.ContentType = "application/json";
             hwr.Expect = "200";
             hwr.Credentials = new NetworkCredential(Username, Password);
-            if (!EqualityComparer<T>.Default.Equals(payload, default(T)))
+            if (!EqualityComparer<T1>.Default.Equals(payload, default(T1)))
             {
                 var swr = new StreamWriter(hwr.GetRequestStream());
                 var requestPayload = JsonConvert.SerializeObject(payload);
@@ -47,7 +52,7 @@ namespace GettinAPILibrary
             var responsePayload = srd.ReadToEnd();
             if (rps.StatusCode == HttpStatusCode.OK)
             {
-                return JsonConvert.DeserializeObject<T>(responsePayload);
+                return JsonConvert.DeserializeObject<T2>(responsePayload);
             }
             else
             {
