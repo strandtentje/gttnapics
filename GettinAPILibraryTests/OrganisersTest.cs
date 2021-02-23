@@ -13,7 +13,6 @@ namespace GettinAPILibraryTests
         {
             Organiser newOrganiser = MakeOrganiser();
             var storedOrganiser = SUT.StoreNew(newOrganiser);
-            Assert.Greater(storedOrganiser.ID.Length, -1);
             Assert.True(storedOrganiser.Email == newOrganiser.Email);
             Assert.True(storedOrganiser.Logo == newOrganiser.Logo);
             Assert.True(storedOrganiser.Name == newOrganiser.Name);
@@ -66,9 +65,8 @@ namespace GettinAPILibraryTests
                 Website = "example.com"
             };
             var organiserToFind = SUT.StoreNew(newOrganiser);
-            var foundOrganiser = SUT.GetByID(organiserToFind.ID);
+            var foundOrganiser = SUT.GetByID(organiserToFind.TicketeerRef);
 
-            Assert.True(organiserToFind.ID == foundOrganiser.ID);
             Assert.True(organiserToFind.Email == foundOrganiser.Email);
             Assert.True(organiserToFind.Logo == foundOrganiser.Logo);
             Assert.True(organiserToFind.Name == foundOrganiser.Name);

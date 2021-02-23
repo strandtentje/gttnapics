@@ -17,8 +17,8 @@ namespace GettinAPILibraryTests
             var organiser = oFactory.StoreNew(OrganisersTest.MakeOrganiser());
             GettinEvent eventToStore = MakeEvent(organiser);
             var storedEvent = SUT.StoreNew(eventToStore);
-            Assert.Greater(storedEvent.ID.Length, 0);
-            Assert.True(storedEvent.Name == eventToStore.ID);
+            Assert.Greater(storedEvent.PublicID.Length, 0);
+            // Assert.True(storedEvent.Name == eventToStore.PublicID);
             // we could test all the properties here but if we're getting an ID,
             // we ASSUME the tests on the actual api cover the completeness
             // of the rest
@@ -35,15 +35,16 @@ namespace GettinAPILibraryTests
             Assert.True(updatedEvent.Description == storedEvent.Description);
         }
 
+        [Test()]
         public void CheckGet()
         {
             var organiser = oFactory.StoreNew(OrganisersTest.MakeOrganiser());
             GettinEvent eventToStore = MakeEvent(organiser);
             var storedEvent = SUT.StoreNew(eventToStore);
 
-            var gottenEvent = SUT.GetByID(storedEvent.ID);
-            Assert.Greater(gottenEvent.ID.Length, 0);
-            Assert.True(gottenEvent.Name == eventToStore.ID);
+            var gottenEvent = SUT.GetByID(storedEvent.PublicID);
+            Assert.Greater(gottenEvent.PublicID.Length, 0);
+            Assert.True(gottenEvent.Name == eventToStore.Name);
             // same test for brevity here.
         }
 
@@ -57,8 +58,8 @@ namespace GettinAPILibraryTests
                 Location = "Bjorp Grog hoofdkantoor",
                 Logo = "https://gettin.nl/wp-content/uploads/2020/04/Gettin-website-logo.png",
                 Name = "Billen",
-                OrganiserID = organiser.ID,
-                TicketeerRef = "Organiser-" + Guid.NewGuid().ToString(),
+                OrganiserID = organiser.TicketeerRef,
+                TicketeerRef = "Event-" + Guid.NewGuid().ToString(),
                 Website = "dorpinator.nl"
             };
         }

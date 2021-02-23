@@ -23,17 +23,17 @@ namespace GettinAPILibraryTests
                     Barcode = "0xDEADBEEF",
                     EntryType = "Op schoot bij ome willem",
                     TicketType = "QR",
-                    TicketeerRef = org.TicketeerRef
+                    TicketeerRef = "Ticket-" + Guid.NewGuid().ToString(),
                 }
             });
             var order = new OrderRequest()
             {
                 Email = "customer@example.com",
-                EventId = evnt.ID,
+                EventId = evnt.TicketeerRef,
                 FirstName = "Flabbert",
                 LastName = "Ruigfluit",
                 SendEmail = "false",
-                TicketeerRef = org.TicketeerRef,
+                TicketeerRef = "Order-" + Guid.NewGuid().ToString(),
                 Tickets = tix
             };
             var resp = SUT.StoreNew(order);

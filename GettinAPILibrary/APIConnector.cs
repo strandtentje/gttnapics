@@ -47,16 +47,18 @@ namespace GettinAPILibrary
                 hwr.GetRequestStream().Flush();
             }
 
-            var rps = (HttpWebResponse)hwr.GetResponse();
-            var srd = new StreamReader(rps.GetResponseStream());
-            var responsePayload = srd.ReadToEnd();
-            if (rps.StatusCode == HttpStatusCode.OK)
+            using (var rps = (HttpWebResponse)hwr.GetResponse())
             {
-                return JsonConvert.DeserializeObject<T2>(responsePayload);
-            }
-            else
-            {
-                throw new APIException(responsePayload);
+                var srd = new StreamReader(rps.GetResponseStream());
+                var responsePayload = srd.ReadToEnd();
+                if (rps.StatusCode == HttpStatusCode.OK)
+                {
+                    return JsonConvert.DeserializeObject<T2>(responsePayload);
+                }
+                else
+                {
+                    throw new APIException(responsePayload);
+                }
             }
         }
 

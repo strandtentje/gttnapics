@@ -16,7 +16,5 @@ namespace GettinAPILibrary
         public string TicketeerRef { get; set; }
         [JsonProperty("website")]
         public string Website { get; set; }
-        [JsonProperty("id"), JsonIgnore()]
-        public string ID { get; set; }
     }
 }

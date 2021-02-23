@@ -32,7 +32,7 @@ namespace GettinAPILibrary
         [JsonProperty("website")]
         public string Website { get; set; }
 
-        [JsonProperty("id"), JsonIgnore]
-        public string ID { get; set; }  
+        [JsonProperty("public_id")]
+        public string PublicID { get; set; }  
     }
 }
